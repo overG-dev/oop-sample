@@ -1,0 +1,67 @@
+@startuml classDiagram
+
+package "CMR Context" {
+
+    entity Customer{
+        -id: CustomerId
+        --
+        -name: String
+        -email: String
+        -address: Address
+        --
+        +updateContactInfo(email, address)
+    }
+}
+
+package "Shared Context" {
+    class CustomerId <<Value Object>> {
+        -value: UUID
+    }
+
+    class Address <<Value Object>> {
+        -street: String
+        -city: String
+        -postalCode: String
+        -country: String
+    }
+
+    class Money <<Value Object>> {
+        -amount: BigDecimal
+        -currency: Currency
+    }
+}
+
+package "Sales Context" {
+    entity SalesOrder <<Aggregate Root>> {
+        -id: UUID
+        --
+        -customerId: CustomerId
+        -orderDate: LocalDateTime
+        -items: List<SalesOrderItem>
+        -totalAmount: Money
+        --
+        +calculateTotalAmount()
+    }
+
+    entity SalesOrderItem <<Entity>> {
+        -productId: ProductId
+        -quantity: int
+        -unitPrice: Money
+        --
+        +calculateSubtotal()
+    }
+
+    class ProductId <<Value Object>> {
+        -value:UUID
+    }
+}
+
+Customer o-> "1" CustomerId
+Customer o--> "1" Address
+SalesOrder o-> "1" CustomerId
+SalesOrder *-> "1..*" SalesOrderItem
+SalesOrderItem o-> "1" ProductId
+SalesOrder o-> "1..*" Money
+SalesOrderItem o-> "1" Money
+
+@enduml
