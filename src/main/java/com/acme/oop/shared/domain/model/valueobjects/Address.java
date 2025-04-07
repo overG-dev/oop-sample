@@ -1,4 +1,4 @@
-package com.acme.oop.shared.domain.valueobjects;
+package com.acme.oop.shared.domain.model.valueobjects;
 
 /**
  * Represents a physical address.

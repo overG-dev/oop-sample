@@ -1,4 +1,4 @@
-package com.acme.oop.shared.domain.valueobjects;
+package com.acme.oop.shared.domain.model.valueobjects;
 import java.util.UUID;
 
 public record CustomerId(UUID value) {

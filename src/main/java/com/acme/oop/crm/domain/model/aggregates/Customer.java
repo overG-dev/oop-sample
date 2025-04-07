@@ -1,6 +1,6 @@
 package com.acme.oop.crm.domain.model.aggregates;
-import com.acme.oop.shared.domain.valueobjects.CustomerId;
-import com.acme.oop.shared.domain.valueobjects.Address;
+import com.acme.oop.shared.domain.model.valueobjects.CustomerId;
+import com.acme.oop.shared.domain.model.valueobjects.Address;
 
 import lombok.Getter;
 import lombok.Setter;
